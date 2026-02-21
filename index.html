@@ -12,9 +12,77 @@
 </head>
 
 <body>
-    <header></header>
 
-    <section></section>
+
+    <header class="w-[80%] mx-auto mt-4">
+        <h1 class="text-3xl font-bold text-black ">Job Application Tracker</h1>
+        <div class="grid grid-cols-3 gap-8 mt-5">
+            <!-- 1st card  -->
+            <div class="bg-gray-100 p-6 shadow-xl">
+                <p>Total</p>
+                <p>0</p>
+            </div>
+
+            <!-- 2nd card -->
+            <div class="bg-gray-100 p-6 shadow-xl">
+                <p>Interview</p>
+                <p class="text-green-700 font-bold">0</p>
+            </div>
+
+            <!-- 3nd card -->
+            <div class="bg-gray-100 p-6 shadow-xl">
+                <p>Rejected</p>
+                <p class="text-red-400 font-bold">0</p>
+            </div>
+        </div>
+    </header>
+
+    <hr class="my-7 w-[80%] mx-auto opacity-40">
+
+    <main>
+        <div class="w-[80%] flex justify-between mx-auto">
+            <h1>Available Jobs</h1>
+            <p> 0 jobs</p>
+        </div>
+
+        <div class="mb-5 mt-3 w-[80%] mx-auto">
+            <button class="bg-gray-100  text-gray-700 px-5 py-2">All</button>
+            <button class="bg-gray-100  text-gray-700 px-5 py-2">Interview</button>
+            <button class="bg-gray-100  text-gray-700 px-5 py-2">Rejected</button>
+        </div>
+
+        <section></section>
+
+        <!-- cards section -->
+        <section class="mt-3 w-[80%] mx-auto">
+
+            <div class="p-5 m-4 bg-white shadow space-y-4">
+                <div>
+                    <h1 class="text-xl font-bold">WebFlow Agency</h1>
+                    <p>Web Designer & Developer</p>
+                </div>
+
+                <p>Los Angeles,CA • Part-time • $80,000 - $120,000</p>
+
+                <div>
+                    <button class="btn bg-gray-100 p-2 m-2">Not Applied</button>
+                    <p>Create stunning web experiences for high-profile clients. Must have portfolio and experience with modern web design trends.</p>
+                </div>
+
+                <div class="flex gap-2">
+                    <button class="btn p-2 m-2 border border-green-300 text-green-400">Interview</button>
+                    <button class="btn border border-red-600 text-red-500 p-2 m-2">Rejected</button>
+                </div>
+
+            </div>
+
+
+        </section>
+
+
+
+
+    </main>
 
 </body>
 
