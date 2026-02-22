@@ -1,7 +1,7 @@
 //count section
-const totalJobs = document.getElementById('totalJobs');
-const totalInterview = document.getElementById('totalInterview');
-const totalRejected = document.getElementById('totalRejected');
+let totalJobs = document.querySelectorAll(".totalJobs");
+let totalInterview = document.getElementById('totalInterview');
+let totalRejected = document.getElementById('totalRejected');
 
 // btn document
 const allBtn = document.getElementById('allBtn');
@@ -9,8 +9,61 @@ const interviewBtn = document.getElementById('interviewBtn');
 const rejectedBtn = document.getElementById('rejectedBtn');
 
 
-//sections job available
-const jobUpdated = document.getElementById('jobUpdated');
+//allCards btn
+const allCards = document.getElementById('cards');
+
+
+// cards interview and rejected
+let interviewList = [];
+let rejectedList = [];
+
+
+const mainContainer = document.querySelector('main');
+
+
+// count function
+function calculateCount() {
+    const count = allCards.children.length;
+    totalJobs.forEach(function (item) {
+        item.innerText = count;
+    })
+
+    totalInterview.innerText = interviewList.length;
+    totalRejected.innerText = rejectedList.length;
+}
+calculateCount();
+
+
+//onclick toggle
+
+function toggleStyle(id) {
+    console.log('click');
+}
+
+
+
+//mainContainer
+
+mainContainer.addEventListener('click', function (event) {
+    const parentNode = event.target.parentNode.parentNode;
+    const headTitle=parentNode.querySelector('.headTitle').innerText;
+    const headPara=parentNode.querySelector('.headPara').innerText;
+    const details=parentNode.querySelector('.details').innerText;
+    const status=parentNode.querySelector('.status').innerText;
+    const notes=parentNode.querySelector('.notes').innerText;
+
+    const cardInfo={
+        headTitle,
+        headPara,
+        details,
+        status,
+        notes
+    }
+    
+    interviewList.find(item=>item.headTitle== cardInfo)
+
+})
+
 
 //btn toggle
 
