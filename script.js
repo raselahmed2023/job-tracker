@@ -21,153 +21,8 @@ const filterSection = document.getElementById('filterSection')
 let interviewList = [];
 let rejectedList = [];
 
-
+//main function class
 const mainContainer = document.querySelector('main');
-
-
-// count function
-function calculateCount() {
-    const count = allCards.children.length;
-    totalJobs.forEach(function (item) {
-        item.innerText = count;
-    })
-
-    totalInterview.innerText = interviewList.length;
-    totalRejected.innerText = rejectedList.length;
-}
-calculateCount();
-
-
-
-
-//mainContainer
-
-mainContainer.addEventListener('click', function (event) {
-    if (event.target.classList.contains('callInterview')) {
-
-        const parentNode = event.target.closest('.card');
-
-
-        const headTitle = parentNode.querySelector('.headTitle').innerText;
-        const headPara = parentNode.querySelector('.headPara').innerText;
-        const details = parentNode.querySelector('.details').innerText;
-        const status = parentNode.querySelector('.status').innerText;
-        const notes = parentNode.querySelector('.notes').innerText;
-
-
-        const cardInfo = { headTitle, headPara, details, status: "Interview", notes };
-
-        rejectedList = rejectedList.filter(item => item.headTitle !== cardInfo.headTitle);
-
-        const jobExist = interviewList.find(item => item.headTitle === cardInfo.headTitle);
-
-        const status1 = parentNode.querySelector('.status');
-        status1.innerText = 'Interview';
-
-        status1.classList.remove("bg-red-100", "border-red-500", "text-red-500");
-        status1.classList.add("bg-green-100", "border-green-300", "text-green-400")
-        if (!jobExist) {
-            interviewList.push(cardInfo);
-        };
-        calculateCount();
-        if (interviewBtn.classList.contains('bg-black')) {
-            renderInterview();
-        }
-
-    }
-    if (event.target.classList.contains('SayRejected')) {
-        const parentNode = event.target.closest('.card');
-        const headTitle = parentNode.querySelector('.headTitle').innerText;
-        const headPara = parentNode.querySelector('.headPara').innerText;
-        const details = parentNode.querySelector('.details').innerText;
-        const status = parentNode.querySelector('.status').innerText;
-        const notes = parentNode.querySelector('.notes').innerText;
-        const cardInfo = { headTitle, headPara, details, status: "Rejected", notes };
-
-        interviewList = interviewList.filter(item => item.headTitle != headTitle);
-        const jobNo = rejectedList.find(item => item.headTitle === cardInfo.headTitle);
-
-        const status1 = parentNode.querySelector('.status');
-        status1.innerText = 'Rejected';
-        status1.classList.add("bg-red-100", "border-red-500", "text-red-500");
-        status1.classList.remove("bg-green-100", "border-green-300", "text-green-400")
-        if (!jobNo) {
-            rejectedList.push(cardInfo);
-        }
-        calculateCount();
-        if (rejectedBtn.classList.contains('bg-black')) {
-            renderRejected();
-        }
-
-    }
-
-})
-
-// render
-function renderInterview() {
-    filterSection.innerHTML = "";
-    for (let inter of interviewList) {
-        let div = document.createElement('div');
-        div.className = 'card px-3 py-2 m-2 bg-white shadow space-y-4 flex justify-between rounded-xl'
-        div.innerHTML = `
-         <div class="space-y-3.5 ">
-     <div>
-         <h1 class="text-xl font-bold headTitle">${inter.headTitle}</h1>
-         <p class="headPara">${inter.headPara}</p>
-     </div>
-     <p class="details">${inter.details}</p>
-     <p class=" status inline-block bg-green-100 px-3 py-1 rounded border border-green-500 text-green-500">${inter.status}</p>
-     <p class="notes">${inter.notes}</p>
-     <div class="flex gap-1">
-         <button
-             class="callInterview  btn p-2 m-2 border rounded border-green-300 text-green-400">Interview</button>
-         <button
-             class=" SayRejected btn border rounded border-red-600 text-red-500 p-2 m-2">Rejected</button>
-     </div>
- </div>
- <!-- second part -->
- <div>
-     <button class=" btn-delete w-10 h-10 rounded-full border flex items-center justify-center"><i
-             class="fa-regular fa-trash-can "></i></button>
- </div>
-        `
-        filterSection.appendChild(div);
-    }
-}
-
-function renderRejected() {
-    filterSection.innerHTML = "";
-    for (let reject of rejectedList) {
-        let div = document.createElement('div');
-        div.className = 'card px-3 py-2 m-2 bg-white shadow space-y-4 flex justify-between rounded-xl'
-        div.innerHTML = `
-         <div class="space-y-3.5 ">
-     <div>
-         <h1 class="text-xl font-bold headTitle">${reject.headTitle}</h1>
-         <p class="headPara">${reject.headPara}</p>
-     </div>
-     <p class="details">${reject.details}</p>
-     <p class=" status inline-block bg-red-100 px-3 py-1 rounded border border-red-500 text-red-500">${reject.status}</p>
-     <p class="notes">${reject.notes}</p>
-     <div class="flex gap-1">
-         <button
-             class="callInterview  btn p-2 m-2 border rounded border-green-300 text-green-400">Interview</button>
-         <button
-             class=" SayRejected btn border rounded border-red-600 text-red-500 p-2 m-2">Rejected</button>
-     </div>
- </div>
- <!-- second part -->
- <div>
-     <button class=" btn-delete w-10 h-10 rounded-full border flex items-center justify-center"><i
-             class="fa-regular fa-trash-can "></i></button>
- </div>
-        `
-        filterSection.appendChild(div);
-    }
-
-
-}
-
 
 
 //btn toggle
@@ -226,8 +81,163 @@ rejectedBtn.addEventListener('click', function () {
         filterSection.classList.remove('hidden');
         renderRejected();
     }
-
-
 })
+
+
+
+
+
+// count function
+function calculateCount() {
+    const count = allCards.children.length;
+    totalJobs.forEach(function (item) {
+        item.innerText = count;
+    })
+    totalInterview.innerText = interviewList.length;
+    totalRejected.innerText = rejectedList.length;
+}
+calculateCount();
+
+
+
+
+//mainContainer
+
+mainContainer.addEventListener('click', function (event) {
+    if (event.target.classList.contains('callInterview')) {
+
+        const parentNode = event.target.closest('.card');
+
+
+        const headTitle = parentNode.querySelector('.headTitle').innerText;
+        const headPara = parentNode.querySelector('.headPara').innerText;
+        const details = parentNode.querySelector('.details').innerText;
+        const status = parentNode.querySelector('.status').innerText;
+        const notes = parentNode.querySelector('.notes').innerText;
+
+
+        const cardInfo = { headTitle, headPara, details,  status:"Interview", notes };
+        rejectedList = rejectedList.filter(item => item.headTitle !== cardInfo.headTitle);
+        const jobExist = interviewList.find(item => item.headTitle === cardInfo.headTitle);
+
+        // status change on click
+        const status1 = parentNode.querySelector('.status');
+        status1.innerText = 'Interview';
+        status1.classList.remove("bg-red-100", "border-red-500", "text-red-500");
+        status1.classList.add("bg-green-100", "border-green-300", "text-green-400")
+
+
+        if (!jobExist) {
+            interviewList.push(cardInfo);
+        };
+        calculateCount();
+        if (interviewBtn.classList.contains('bg-black')) {
+            renderInterview();
+        }
+
+    }
+
+    if (event.target.classList.contains('SayRejected')) {
+        const parentNode = event.target.closest('.card');
+        const headTitle = parentNode.querySelector('.headTitle').innerText;
+        const headPara = parentNode.querySelector('.headPara').innerText;
+        const details = parentNode.querySelector('.details').innerText;
+        const status = parentNode.querySelector('.status').innerText;
+        const notes = parentNode.querySelector('.notes').innerText;
+
+        const cardInfo = { headTitle, headPara, details, status:"Rejected", notes };
+
+        interviewList = interviewList.filter(item => item.headTitle != headTitle);
+        const jobNo = rejectedList.find(item => item.headTitle === cardInfo.headTitle);
+
+
+        // status change on click
+        const status1 = parentNode.querySelector('.status');
+        status1.innerText = 'Rejected';
+        status1.classList.add("bg-red-100", "border-red-500", "text-red-500");
+        status1.classList.remove("bg-green-100", "border-green-300", "text-green-400")
+        
+        
+        if (!jobNo) {
+            rejectedList.push(cardInfo);
+        }
+        calculateCount();
+        if (rejectedBtn.classList.contains('bg-black')) {
+            renderRejected();
+        }
+    }
+
+    if(event.target.closest('btn-delete')){
+        const card=event.target.closest('.card');
+        const id=card.dataset.id;
+        deleteJob(id);
+    }
+})
+
+// renderInterview function
+function renderInterview() {
+    filterSection.innerHTML = "";
+    for (let inter of interviewList) {
+        let div = document.createElement('div');
+        div.className = 'card px-3 py-2 m-2 bg-white shadow space-y-4 flex justify-between rounded-xl'
+        div.innerHTML = `
+         <div class="space-y-3.5 ">
+     <div>
+         <h1 class="text-xl font-bold headTitle">${inter.headTitle}</h1>
+         <p class="headPara">${inter.headPara}</p>
+     </div>
+     <p class="details">${inter.details}</p>
+     <p class=" status inline-block bg-green-100 px-3 py-1 rounded border border-green-500 text-green-500">${inter.status}</p>
+     <p class="notes">${inter.notes}</p>
+     <div class="flex gap-1">
+         <button
+             class="callInterview  btn p-2 m-2 border rounded border-green-300 text-green-400">Interview</button>
+         <button
+             class=" SayRejected btn border rounded border-red-600 text-red-500 p-2 m-2">Rejected</button>
+     </div>
+ </div>
+ <!-- second part -->
+ <div>
+     <button class=" btn-delete w-10 h-10 rounded-full border flex items-center justify-center"><i
+             class="fa-regular fa-trash-can "></i></button>
+ </div>
+        `
+        filterSection.appendChild(div);
+    }
+}
+
+// renderRejected function
+
+function renderRejected() {
+    filterSection.innerHTML = "";
+    for (let reject of rejectedList) {
+        let div = document.createElement('div');
+        div.className = 'card px-3 py-2 m-2 bg-white shadow space-y-4 flex justify-between rounded-xl'
+        div.innerHTML = `
+         <div class="space-y-3.5 ">
+     <div>
+         <h1 class="text-xl font-bold headTitle">${reject.headTitle}</h1>
+         <p class="headPara">${reject.headPara}</p>
+     </div>
+     <p class="details">${reject.details}</p>
+     <p class=" status inline-block bg-red-100 px-3 py-1 rounded border border-red-500 text-red-500">${reject.status}</p>
+     <p class="notes">${reject.notes}</p>
+     <div class="flex gap-1">
+         <button
+             class="callInterview  btn p-2 m-2 border rounded border-green-300 text-green-400">Interview</button>
+         <button
+             class=" SayRejected btn border rounded border-red-600 text-red-500 p-2 m-2">Rejected</button>
+     </div>
+ </div>
+ <!-- second part -->
+ <div>
+     <button class=" btn-delete w-10 h-10 rounded-full border flex items-center justify-center"><i
+             class="fa-regular fa-trash-can "></i></button>
+ </div>
+        `
+        filterSection.appendChild(div);
+    }
+}
+
 
 
