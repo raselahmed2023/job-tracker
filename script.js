@@ -124,6 +124,24 @@ calculateCount();
 //mainContainer
 
 mainContainer.addEventListener('click', function (event) {
+    const deleteBtn = event.target.closest('.btn-delete');
+
+if (deleteBtn) {
+    const parentNode = deleteBtn.closest('.card');
+    const headTitle = parentNode.querySelector('.headTitle').innerText;
+
+    parentNode.remove();
+
+    interviewList = interviewList.filter(item => item.headTitle !== headTitle);
+    rejectedList = rejectedList.filter(item => item.headTitle !== headTitle);
+
+    calculateCount();
+
+    if (interviewBtn.classList.contains('bg-black')) renderInterview();
+    if (rejectedBtn.classList.contains('bg-black')) renderRejected();
+
+    return;
+}
     if (event.target.classList.contains('callInterview')) {
 
         const parentNode = event.target.closest('.card');
@@ -277,4 +295,6 @@ function renderRejected() {
         `
         filterSection.appendChild(div);
     }
+
+
 }
