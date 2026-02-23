@@ -68,8 +68,13 @@ const filtered = document.getElementById('filtered');
 
 allBtn.addEventListener('click', function () {
     cardsSection.classList.remove('hidden');
-    filtered.classList.add('hidden');
-    filterSection.classList.add('hidden');
+    if (allCards.children.length === 0) {
+        filtered.classList.remove('hidden');
+        filterSection.classList.add('hidden');
+    } else {
+        filtered.classList.add('hidden');
+        filterSection.classList.remove('hidden');
+    }
 
     UpdateWithClick();
 });
@@ -85,7 +90,6 @@ interviewBtn.addEventListener('click', function () {
         filterSection.classList.remove('hidden');
         renderInterview();
     }
-
     UpdateWithClick();
 });
 
@@ -124,22 +128,30 @@ calculateCount();
 mainContainer.addEventListener('click', function (event) {
     const deleteBtn = event.target.closest('.btn-delete');
 
-if (deleteBtn) {
-    const parentNode = deleteBtn.closest('.card');
-    const headTitle = parentNode.querySelector('.headTitle').innerText;
+    if (deleteBtn) {
+        const parentNode = deleteBtn.closest('.card');
+        const headTitle = parentNode.querySelector('.headTitle').innerText;
 
-    parentNode.remove();
+        parentNode.remove();
 
-    interviewList = interviewList.filter(item => item.headTitle !== headTitle);
-    rejectedList = rejectedList.filter(item => item.headTitle !== headTitle);
+        interviewList = interviewList.filter(item => item.headTitle !== headTitle);
+        rejectedList = rejectedList.filter(item => item.headTitle !== headTitle);
 
-    calculateCount();
+        calculateCount();
 
-    if (interviewBtn.classList.contains('bg-black')) renderInterview();
-    if (rejectedBtn.classList.contains('bg-black')) renderRejected();
+        if (allBtn.classList.contains('bg-black') && allCards.children.length === 0) {
+            cardsSection.classList.add('hidden');
+            filterSection.classList.add('hidden');
+            filtered.classList.remove('hidden');
+        }
 
-    return;
-}
+        if (interviewBtn.classList.contains('bg-black')) renderInterview();
+        if (rejectedBtn.classList.contains('bg-black')) renderRejected();
+
+        return;
+    }
+
+
     if (event.target.classList.contains('callInterview')) {
 
         const parentNode = event.target.closest('.card');
@@ -148,7 +160,7 @@ if (deleteBtn) {
         const headTitle = parentNode.querySelector('.headTitle').innerText;
         const headPara = parentNode.querySelector('.headPara').innerText;
         const details = parentNode.querySelector('.details').innerText;
-  
+
         const notes = parentNode.querySelector('.notes').innerText;
 
         const cardInfo = { headTitle, headPara, details, status: "Interview", notes };
@@ -180,7 +192,7 @@ if (deleteBtn) {
         const headTitle = parentNode.querySelector('.headTitle').innerText;
         const headPara = parentNode.querySelector('.headPara').innerText;
         const details = parentNode.querySelector('.details').innerText;
-       
+
         const notes = parentNode.querySelector('.notes').innerText;
 
         const cardInfo = { headTitle, headPara, details, status: "Rejected", notes };
