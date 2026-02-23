@@ -16,6 +16,8 @@ const allCards = document.getElementById('cards');
 // filterSection btn
 const filterSection = document.getElementById('filterSection');
 
+
+//available job
 const jobsCounter = document.getElementById('jobsCounter');
 
 function UpdateWithClick() {
@@ -102,9 +104,6 @@ rejectedBtn.addEventListener('click', function () {
 })
 
 
-
-
-
 // count function
 function calculateCount() {
     const count = allCards.children.length;
@@ -117,7 +116,6 @@ function calculateCount() {
     UpdateWithClick();
 }
 calculateCount();
-
 
 
 
