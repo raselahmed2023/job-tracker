@@ -16,16 +16,7 @@ document.body.appenChild.("div")
 
 3. What is Event Bubbling? And how does it work?
 Event bubbling is a concept of DOM, when an event receives an event it bubbles up to its parents ,ancestor until reach it to the main root element.
-If i write a struture like:
-<body>
-    <div>
-        <span>
-            <button> Click </button>
-        <span>
-    </div>
-</body>
-
-when i click button it will call parent which is span. span is child of div and div is child of body. So when i click on btn i am also clicking the span, div,body.
+If i write a struture like: <body><div><span><button> Click </button><span></div></body>. when i click button it will call parent which is span. span is child of div and div is child of body. So when i click on btn i am also clicking the span, div,body.
 
 
 4. What is Event Delegation in JavaScript? Why is it useful?
