@@ -36,3 +36,6 @@ It is useful for allows everyone to write cleaner code and create fewer events l
 preventDefault() methods use to prevents the default behavior of an event from happenend. it is used to prevent form submission,link navigate.
 On the other hand  stopPropagation() methods is used to stop the event from bubble up tp parent elements.
 This is useful for complex UIs where multiple elements have event listeners.
+
+
+LiveLink: https://statuesque-salmiakki-676652.netlify.app/
