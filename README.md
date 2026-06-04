@@ -102,8 +102,6 @@ Open `index.html` in your browser.
 
 ---
 
----
-
 ## 🎯 Learning Outcomes
 
 - DOM Manipulation
@@ -113,4 +111,3 @@ Open `index.html` in your browser.
 - Responsive Web Design
 - Interactive Dashboard Development
 
----
